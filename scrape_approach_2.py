@@ -26,7 +26,7 @@ def start_scrape_2(page_num):
             break
 
     driver = webdriver.Chrome()
-    driver.get(f"https://www.zoomit.ir/product/list/{choice}/") # difference between scrape 1 and 2
+    driver.get(f"https://www.zoomit.ir/product/list/{choice}/")  # difference between scrape 1 and 2
 
     for i in range(1, int(page_num)):
         try:
@@ -53,7 +53,8 @@ def start_scrape_2(page_num):
                 continue
 
         next_page_button = driver.find_element(
-            By.XPATH, f"/html/body/div[2]/div[7]/div[3]/div[2]/div[1]/nav/ul/li[{str(i)}]/a"  # difference between scrape 1 and 2
+            By.XPATH,
+            f"/html/body/div[2]/div[7]/div[3]/div[2]/div[1]/nav/ul/li[{str(i)}]/a",  # difference between scrape 1 and 2
         )
         next_page_button.click()
         sleep(5)

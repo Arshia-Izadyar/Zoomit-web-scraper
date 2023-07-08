@@ -10,14 +10,13 @@ from datetime import datetime
 
 
 def start_scrape(page_num):
-    
-    data = []
-    
-    base_site = 'https://www.zoomit.ir'
+    data = list()
+
+    base_site = "https://www.zoomit.ir"  # this is the primary website
 
     choice = ""
 
-    choice_list = ["mobile", "laptop", "tablet", "wearables", "tv", "cpu", "vga"]
+    choice_list = ["mobile", "laptop", "tablet", "wearables", "tv", "cpu", "vga"]  # all browsable products
 
     while choice not in choice_list or choice == "help":
         choice = str(input('type your target category or type "help" to see categories : ')).lower()
@@ -32,12 +31,12 @@ def start_scrape(page_num):
 
     driver = webdriver.Chrome()
     driver.headless = True
-    print('started scraping ... ')
-    
+    print("Started scraping ... ")
+
     start_time = datetime.now()
 
-    for i in range(1, int(page_num) + 1):
-        driver.get(f"https://www.zoomit.ir/product/list/{choice}/page/{str(i)}/") # difference between scrape 1 and 2
+    for i in range(1, int(page_num) + 1):  # adding one to exactly return number of pages reuested by user
+        driver.get(f"{base_site}/product/list/{choice}/page/{str(i)}/")  # difference between scrape 1 and 2
 
         try:
             prods = WebDriverWait(driver, 5).until(
@@ -56,20 +55,39 @@ def start_scrape(page_num):
                 price = prod.find_element(
                     By.CSS_SELECTOR,
                     ".productsList .c-productsList__inLine .productSummery .productSummery__prices > div.productSummery__prices--highlited span",
+                )  # css selector was the only simple way to find rice fields
+
+                link = prod.find_element(
+                    By.CSS_SELECTOR,
+                    ".productsList .c-productsList__inLine .productSummery .productSummery__buttons .button",
                 )
-                
-                link = prod.find_element(By.CSS_SELECTOR, '.productsList .c-productsList__inLine .productSummery .productSummery__buttons .button')
-                if link.get_attribute('href').startswith(base_site):
-                    data.append({"title": title.text, "rate": rate.text, "price": price.text, 'link': link.get_attribute('href')})
+
+                # TODO: some links are not compelete
+                if link.get_attribute("href").startswith(base_site):
+                    data.append(
+                        {
+                            "title": title.text,
+                            "rate": rate.text,
+                            "price": price.text,
+                            "link": link.get_attribute("href"),
+                        }
+                    )
                 else:
-                    data.append({"title": title.text, "rate": rate.text, "price": price.text, 'link': base_site + link.get_attribute('href')})
+                    data.append(
+                        {
+                            "title": title.text,
+                            "rate": rate.text,
+                            "price": price.text,
+                            "link": base_site + link.get_attribute("href"),
+                        }
+                    )
                     # some href links in site are not complete so adding this is necessary to store complete links
 
             except NoSuchElementException:
-                continue
+                continue  # some pages like page 8 in cpu category doesn't have price fields so added this to prevent user errors
 
     driver.quit()
-    print('Crawling time : {}' .format(datetime.now() - start_time))
-    print('successfuly Finished')
+    print("Crawling time : {}".format(datetime.now() - start_time))
+    print("successfuly Finished")
 
     return data

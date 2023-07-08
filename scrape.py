@@ -12,6 +12,9 @@ from datetime import datetime
 def start_scrape(page_num):
     
     data = []
+    
+    base_site = 'https://www.zoomit.ir'
+
     choice = ""
 
     choice_list = ["mobile", "laptop", "tablet", "wearables", "tv", "cpu", "vga"]
@@ -54,8 +57,13 @@ def start_scrape(page_num):
                     By.CSS_SELECTOR,
                     ".productsList .c-productsList__inLine .productSummery .productSummery__prices > div.productSummery__prices--highlited span",
                 )
-
-                data.append({"title": title.text, "rate": rate.text, "price": price.text})
+                
+                link = prod.find_element(By.CSS_SELECTOR, '.productsList .c-productsList__inLine .productSummery .productSummery__buttons .button')
+                if link.get_attribute('href').startswith(base_site):
+                    data.append({"title": title.text, "rate": rate.text, "price": price.text, 'link': link.get_attribute('href')})
+                else:
+                    data.append({"title": title.text, "rate": rate.text, "price": price.text, 'link': base_site + link.get_attribute('href')})
+                    # some href links in site are not complete so adding this is necessary to store complete links
 
             except NoSuchElementException:
                 continue

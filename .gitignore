@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-
+# added products_*.csv to gitignore
 products_*.csv
 # C extensions
 *.so

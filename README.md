@@ -15,16 +15,41 @@ you can scrape products in many categories like:
         pip install -r requirements.txt
 
 2.  install the <a href="https://sites.google.com/chromium.org/driver/">Chrome Driver</a> for selenium
-3.  run the Chrome Driver
-4.  open terminal and run the script
+3.  run the script using arguments (will list arguments below)
 
-        python main.py {number of pages that you want to scrape like 5 } --csv
+        python main.py --print --scrape 5
+    
+6. after running the script you have to type the target category in the input field like **vga** or **cpu** the **default is mobile** category
 
-    exp:
+### Arguments 
+#### --scrape / -s
+Use -s or --scrape and the give the number of pages you want to sceape default
 
-        python main.py 5 --csv
+    python main.py --scrape 5
+        
+****this command is necessary to start the webscraping function***
 
-5.  after running the script you have to type the target category like vga or cpu the default is mobile category
+#### --print / -p
+use --print or -p after using --scrape to print the data in terminal
+
+    python main.py -s 3 --print
+
+### --mongo / -m
+this ard will save the scraped data to ***__MongoDB__*** 
+
+    python main.py -s 3 --mongo
+
+### --find / -f 
+this will search database with the value you set next to it (icontain)
+
+    python main.py --find Apple
+
+### --csv / -c 
+
+this arg will create a csv file with scraped data
+
+    python main.py -s 3 --csv
+
 
 ## Notes
 

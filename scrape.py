@@ -65,11 +65,13 @@ def start_scrape(page_num):
                 # TODO: some links are not compelete
                 if link.get_attribute("href").startswith(base_site):
                     data.append(
-                        {
+                        {   
+                            
                             "title": title.text,
                             "rate": rate.text,
                             "price": price.text,
                             "link": link.get_attribute("href"),
+                            "created_time" : datetime.now()
                         }
                     )
                 else:

@@ -52,13 +52,10 @@ this arg will create a csv file with scraped data
 
 
 ## Notes
+1. you can change the scraper file to scrape_approach_2.py its has a small difference in the code and might skipe some products
 
-1. adding **_--csv_** will generate a csv file for the results:
-
-2. adding ***__--mongo__*** will add data to mongodb database
+2. utils.py contains function for creating a csv file / adding files to DB / run a query in DB
 
 ![image](https://github.com/Arshia-Izadyar/selenium-web-scraper/assets/110552657/0a73e409-8db1-41b2-bbb2-1bea04a1bf70)
 
-3. you can change the scraper file to scrape_approach_2.py its has a small difference in the code and might skipe some products
 
-4. utils.py contain a function for creating a csv file

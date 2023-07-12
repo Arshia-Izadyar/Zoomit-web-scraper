@@ -7,6 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 
+# this approach is **discontinued** :)))))))))) dont use this
 
 def start_scrape_2(page_num):
     data = []

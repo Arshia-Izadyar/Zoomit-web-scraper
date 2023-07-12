@@ -3,7 +3,6 @@ from utils import export_csv, save_to_mongo, search_DB
 
 from scrape import start_scrape
 
-# from scrape_approach_2 import start_scrape_2 # uncomment and replace "start_scrape_2" with "start_scrape" func
 
 
 def main():

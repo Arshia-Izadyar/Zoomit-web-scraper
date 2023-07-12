@@ -30,7 +30,7 @@ you can scrape products in many categories like:
 
 1. adding **_--csv_** will generate a csv file for the results:
 
-2. adding **_**--mongo**_** will add data to mongodb database
+2. adding ***__--mongo__*** will add data to mongodb database
 
 ![image](https://github.com/Arshia-Izadyar/selenium-web-scraper/assets/110552657/0a73e409-8db1-41b2-bbb2-1bea04a1bf70)
 

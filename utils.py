@@ -27,4 +27,10 @@ def save_to_mongo(data):
         print("An error occurred:", e)
 
     
+def search_DB(phrase):
+    with pymongo.MongoClient("mongodb://localhost:27017/") as client:
+        db = client["DB"]
+        products = db["products"]
+        result = products.find({"title":{"$regex": f".*{phrase}.*"}})
+        return list(result)
     

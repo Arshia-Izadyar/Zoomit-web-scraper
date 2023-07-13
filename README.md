@@ -50,6 +50,11 @@ this arg will create a csv file with scraped data
 
     python main.py -s 3 --csv
 
+### --soup / -b
+this command will use Beautifulsoup4 for web scraping
+
+    python main.py --soup 3 
+
 
 ## Notes
 1. you can change the scraper file to scrape_approach_2.py its has a small difference in the code and might skipe some products

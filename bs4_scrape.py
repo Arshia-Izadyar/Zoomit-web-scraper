@@ -3,7 +3,7 @@ import requests
 from requests.exceptions import Timeout, TooManyRedirects, ReadTimeout
 from datetime import datetime
 
-def start_scrape(page_num):
+def start_soup(page_num):
     data = []
     base = "https://www.zoomit.ir"
     choice = ""
@@ -32,7 +32,6 @@ def start_scrape(page_num):
             for prod in products:
                 title = prod.find("span", class_="productEnglishTitle").text
                 price = prod.find("div", class_="productSummery__prices--highlited").text.split(" ")[0]
-                # print(price.text.split(" ")[0])
                 rate = prod.find("span", class_="productSummery__rate").text
                 link = prod.find("a", class_="button")
                 if not link.get("href").startswith(base):

@@ -2,7 +2,7 @@ import argparse
 from utils import export_csv, save_to_mongo, search_DB
 
 from scrape import start_scrape
-
+from bs4_scrape import start_soup
 
 
 def main():
@@ -10,6 +10,10 @@ def main():
     
     # needed to start any browsing
     parser.add_argument("-s", "--scrape", help="enter how many pages should scrape 4-10 (it's exclusive)",type=int)
+    
+    # scrape with BeautifulSoup instead of selenium
+    
+    parser.add_argument("-b", "--soup", help="enter how many pages should scrape 4-10 (it's exclusive)",type=int)
     
     # save options
     parser.add_argument("-c", "--csv", action="store_true", help="export to CSV")
@@ -28,6 +32,9 @@ def main():
 
     if args.scrape:
         data = start_scrape(args.scrape)
+    
+    if args.soup:
+        data = start_soup(args.soup)
 
     if args.csv:
         export_csv(data)
